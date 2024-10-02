@@ -3,6 +3,7 @@
 require('dotenv').config();
 const path = require('path');
 const express = require('express');
+const app = express();
 const session = require('express-session');
 const passport = require('./config/passport-config');
 let livereload = undefined;
@@ -34,9 +35,6 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Usual express.js setup
-
-const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -84,7 +82,7 @@ app.get('*', (req, res) => {
 
 // Start server
 
-app.listen(process.env.PORT, () => {
+const server = app.listen(process.env.PORT, () => {
   console.log(`Express is listening on port ${process.env.PORT}.`);
 });
 
