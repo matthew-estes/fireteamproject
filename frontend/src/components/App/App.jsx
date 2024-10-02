@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { BrowserRouter as Routes, Route, useNavigate } from "react-router-dom";
+import SignUp from './components/SignUp';
+import SignIn from './components/SignIn';
 import "./App.css";
 
 function App() {
