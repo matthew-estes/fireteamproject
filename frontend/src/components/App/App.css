@@ -60,3 +60,38 @@ body {
   letter-spacing: 0.25px;
   color: #484646;
 }
+
+
+.hourly-forecast {
+    background-color: #ffffff;
+    width: 90%; 
+    max-width: 310px; 
+    padding: 16px; 
+    margin: 0 auto; 
+    margin-top: 16px;
+    border-radius: 8px;
+  }
+  
+  
+  .hourly-forecast h3 {
+    font-size: 16px;
+    color: #484646;
+    font-weight: 400;
+    margin-bottom: 8px;
+  }
+  
+  .hourly-grid {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 8px; 
+  }
+  
+  .hour {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 14px;
+    color: #000;
+  }
+  
+ 
