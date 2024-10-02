@@ -1,65 +1,62 @@
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-color: #f4f4f4;
-    font-family: 'Roboto', sans-serif;
-  }
-  .mobile-view{
-    width: 360px;
-    height: 100vh;
-    background-color: white;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 16px; 
-    overflow: hidden; 
-  }
-  .weather-card {
-    background-color: #eaeaea;
-    width: 328px;
-    height: 400px;
-    padding: 0 16px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: black;
+  font-family: "Roboto", sans-serif;
+}
+.mobile-view {
+  width: 360px;
+  height: 100vh;
+  background-color: #eaeaea;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.weather-card {
+  width: 328px;
+  height: 400px;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+}
 
-  }
+.location-info {
+  text-align: center;
+}
 
+.location-info h1 {
+  color: #000;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 32px;
+}
 
-  .location-info {
-    text-align: center;
-  }
-  
-  .location-info h1 {
-    color: #000;
-    font-size: 24px;
-    font-weight: 400;
-    line-height: 32px;
-  }
-  
-  .location-info p {
-    color: #484646;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 24px;
-    letter-spacing: 0.5px;
-  }
-  
-  .temperature {
-    font-size: 57px;
-    font-weight: 400;
-    color: #000;
-    line-height: 64px;
-    letter-spacing: -0.25px;
-  }
-  
-  .temp-range {
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 24px;
-    letter-spacing: 0.25px;
-    color: #484646;
-  }
+.location-info p {
+  color: #484646;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+
+.temperature {
+  font-size: 57px;
+  font-weight: 400;
+  color: #000;
+  line-height: 64px;
+  letter-spacing: -0.25px;
+}
+
+.temp-range {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.25px;
+  color: #484646;
+}
