@@ -6,6 +6,7 @@ function App() {
 
 
   return (
+    <div className="mobile-view">
     <div className="weather-card">
     <div className="location-info">
       <h1>My Location</h1>
@@ -17,6 +18,7 @@ function App() {
     <div className="temp-range">
       <p>Low: 00° | High: 00°</p>
     </div>
+  </div>
   </div>
 );
 }
