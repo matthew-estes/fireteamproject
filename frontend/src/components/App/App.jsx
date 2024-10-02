@@ -1,10 +1,23 @@
 import { useState } from "react";
 import { BrowserRouter as Routes, Route, useNavigate } from "react-router-dom";
+import TopAppBar from './components/TopAppBar';
+import NavigationDrawer from './components/NavigationDrawer';
 import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
 import "./App.css";
 
 function App() {
+    const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+    
+    const toggleDrawer = () => {
+    setIsDrawerOpen(!isDrawerOpen);
+  };
+
+
+
+
+
+
   return (
     <div className="mobile-view">
       <div className="weather-card">
