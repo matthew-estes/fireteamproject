@@ -8,3 +8,16 @@ body {
     font-family: 'Roboto', sans-serif;
   }
 
+  .weather-card {
+    background-color: #eaeaea;
+    width: 328px;
+    height: 400px;
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    border-radius: 16px;
+  }
+  
