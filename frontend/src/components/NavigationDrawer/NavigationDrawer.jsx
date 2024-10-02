@@ -1,24 +1,25 @@
 import React from 'react';
 import { Drawer, List, ListItem, IconButton, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import { Link } from 'react-router-dom';
 
-function NavigationDrawer({ isDrawerOpen, toggleDrawer }) {
+function NavigationDrawer({ isOpen, toggleDrawer }) {
   return (
-    <Drawer anchor="left" open={isDrawerOpen} onClose={toggleDrawer}>
-      <div style={{ width: 250, padding: 16 }}>
+    <Drawer anchor="left" open={isOpen} onClose={toggleDrawer}>
+      <div style={{ width: '250px' }}>
         <IconButton onClick={toggleDrawer}>
           <CloseIcon />
         </IconButton>
+        <Typography variant="h6" style={{ paddingLeft: '16px' }}>
+          Settings
+        </Typography>
         <List>
-          <Typography variant="subtitle1">Locations</Typography>
-          <ListItem button>My Location</ListItem>
-          <ListItem button>Label</ListItem>
-          <ListItem button>Label</ListItem>
-          <ListItem button>Label</ListItem>
-          <Typography variant="subtitle1">Settings</Typography>
-          <ListItem button>Label</ListItem>
-          <ListItem button>Label</ListItem>
-          <ListItem button>Label</ListItem>
+          <ListItem>
+            <Link to="/signin">Sign In</Link>
+          </ListItem>
+          <ListItem>
+            <Link to="/signup">Sign Up</Link>
+          </ListItem>
         </List>
       </div>
     </Drawer>
