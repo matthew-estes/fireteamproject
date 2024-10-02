@@ -20,4 +20,38 @@ body {
     gap: 24px;
     border-radius: 16px;
   }
+
+  .location-info {
+    text-align: center;
+  }
   
+  .location-info h1 {
+    color: #000;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 32px;
+  }
+  
+  .location-info p {
+    color: #484646;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+  }
+  
+  .temperature {
+    font-size: 57px;
+    font-weight: 400;
+    color: #000;
+    line-height: 64px;
+    letter-spacing: -0.25px;
+  }
+  
+  .temp-range {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0.25px;
+    color: #484646;
+  }
