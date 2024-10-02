@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import getTest from "../../../utils/backend";
+import { getTest } from "../../../utils/backend";
 
 function TestPage() {
     const [testMessage, setTestMessage] = useState("message from database via back end coming soon...");
