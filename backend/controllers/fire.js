@@ -20,4 +20,19 @@ router.get("/lat-lng", (req, res) => {
     });
 });
 
+router.get("/place", (req, res) => {
+    const {state} = req.body;
+    axios
+    .get("https://api.ambeedata.com/fire/latest/by-place", {
+        params: {place: state},
+      headers: {
+        'x-api-key': process.env.FIRE_API_KEY,
+      },
+    })
+    .then((response) => {
+      console.log(response.data);
+      res.json(response.data)
+    });
+});
+
 module.exports = router;
