@@ -65,6 +65,7 @@ app.use((req, res, next) => {
 
 app.use('/auth', require('./controllers/auth'));
 app.use('/api/test', testController);
+app.use('/fire', require('./controllers/fire'))
 
 // Non-REST routes
 
