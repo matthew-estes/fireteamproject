@@ -1,0 +1,20 @@
+.temperature {
+  font-size: 57px;
+  font-weight: 400;
+  color: #000;
+  line-height: 64px;
+  letter-spacing: -0.25px;
+  text-align: center;
+}
+
+.temp-range {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.25px;
+  color: #484646;
+  text-align: center;
+  padding: 8px 0px;
+  margin-top: 10px;
+  
+}

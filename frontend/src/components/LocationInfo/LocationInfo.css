@@ -1,0 +1,20 @@
+.location-info {
+    text-align: center;
+    margin-top: 80px;
+  }
+  
+  .location-info h1 {
+    color: #000;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 32px;
+  }
+  
+  .location-info p {
+    color: #484646;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+  }
