@@ -19,7 +19,16 @@ const testController = require('./controllers/test');
 const models = require('./models/index');
 const testModel = models.testModel;
 
-const SECRET_SESSION = process.env.SECRET_SESSION;
+const SECRET_SESSION = process.env.JWT_SECRET_KEY;
+
+//session config
+app.use(
+  session({
+    secret: SECRET_SESSION,
+    resave: false,
+    saveUninitialized: true,
+  })
+);
 
 // initial passport
 app.use(passport.initialize());
