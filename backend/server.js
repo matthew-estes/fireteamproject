@@ -57,7 +57,6 @@ if (process.env.ON_HEROKU === 'false') {
 
 // middleware for tracking users and alerts
 app.use((req, res, next) => {
-  res.locals.alerts = req.flash();
   res.locals.currentUser = req.user;
   next(); // going to said route
 });
