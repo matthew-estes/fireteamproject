@@ -9,6 +9,8 @@ import SignIn from "./components/Account/SignIn";
 import SignUp from "./components/Account/SignUp";
 import StatusBar from "./components/StatusBar/StatusBar";
 import "./App.css";
+import 'leaflet/dist/leaflet.css';
+import Map from "./components/Map/Map";
 
 function App() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -30,6 +32,10 @@ function App() {
       </div>
 
       <HourlyForecast />
+
+      <div style={{ height: "400px", marginTop: "20px" }}>
+        <Map latitude={51.505} longitude={-0.09} zoom={13} />
+      </div>
 
       <Routes>
         <Route path="/signup" element={<SignUp />} />
