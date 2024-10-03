@@ -19,6 +19,7 @@ router.get("/", (req, res) => {
         });
     } else {
         console.log(`Got public IP ${req.ip}, trying to get location`);
+        console.log(req.ips);
         axios.get(`https://api.ipgeolocation.io/ipgeo?apiKey=${process.env.IPGEOLOCATION_IO_API_KEY}&ip=${req.ip}`).then( (result) => {
             console.log(`Got location: ${result.data.latitude}, ${result.data.longitude}`);
             res.json({
