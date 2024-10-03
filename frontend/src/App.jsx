@@ -30,13 +30,9 @@ function App() {
         <LocationInfo />
         <Temperature />
       </div>
-
+     
       <HourlyForecast />
-
-      <div style={{ height: "400px", marginTop: "20px" }}>
-        <Map latitude={51.505} longitude={-0.09} zoom={13} />
-      </div>
-
+      <Map />
       <Routes>
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />

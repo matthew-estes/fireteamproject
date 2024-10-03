@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import './LocationInfo.css';
 
 function LocationInfo() {
-  const [location, setLocation] = useState({ city: '', region: '', country: '' });
+  const [location, setLocation] = useState({ city: '', region: ''});
+  const token = import.meta.env.VITE_IPINFO_TOKEN;
 
   useEffect(() => {
     const fetchLocation = async () => {
@@ -19,12 +21,12 @@ function LocationInfo() {
     };
 
     fetchLocation();
-  }, []);
+  }, [token]);
 
   return (
     <div className="location-info">
       <h1>My Location</h1>
-      <p>Los Angeles</p>
+      <p>{location.city}, {location.region}</p>
     </div>
   );
 }
