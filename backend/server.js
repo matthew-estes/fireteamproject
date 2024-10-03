@@ -15,6 +15,8 @@ if (process.env.ON_HEROKU === 'false') {
 }
 
 // Internal requires
+const testController = require('./controllers/test');
+const iplatlongController = require('./controllers/iplatlong');
 const models = require('./models/index');
 const testModel = models.testModel;
 
@@ -62,10 +64,10 @@ app.use((req, res, next) => {
 // Mount controllers
 
 app.use('/auth', require('./controllers/auth'));
+app.use('/api/test', testController);
+app.use('/api/iplatlong', iplatlongController);
 app.use('/fire', require('./controllers/fire'))
-app.use('/api/test', require('./controllers/test'));
 app.use('/weather', require('./controllers/weather') )
-
 
 // Non-REST routes
 
