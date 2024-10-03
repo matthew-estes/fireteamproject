@@ -62,8 +62,10 @@ app.use((req, res, next) => {
 // Mount controllers
 
 app.use('/auth', require('./controllers/auth'));
+app.use('/fire', require('./controllers/fire'))
 app.use('/api/test', require('./controllers/test'));
 app.use('/weather', require('./controllers/weather') )
+
 
 // Non-REST routes
 
