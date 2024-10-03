@@ -14,7 +14,6 @@ function Temperature({ latitude, longitude }) {
           const response = await axios.get(`http://localhost:3000/weather/lat-lng`, {
             params: { lat: latitude, lng: longitude },
           });
-          console.log("Weather response:", response.data);
           setTemperatureData(response.data);
           setLoading(false);
         } catch (err) {
