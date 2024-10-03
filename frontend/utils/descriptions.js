@@ -1,9 +1,4 @@
-import React from 'react';
-import './HourlyForecast.css';
-import axios from 'axios';
-import { data } from 'autoprefixer';
-
-const weatherTypeDescriptions = {
+export const weatherTypeDescriptions = {
 	"0":{
 		"day":{
 			"description":"Sunny",
@@ -285,49 +280,3 @@ const weatherTypeDescriptions = {
 		}
 	}
 };
-
-function HourlyForecast() {
-    const [forecastData, setForecastData] = React.useState({
-        loaded: false,
-        data: [
-            { time: "Now", iconUrl: "", temp: 0 },
-            { time: "2h", iconUrl: "", temp: 0 },
-            { time: "4h", iconUrl: "", temp: 0 },
-            { time: "6h", iconUrl: "", temp: 0 },
-            { time: "8h", iconUrl: "", temp: 0 }
-        ]
-    });
-
-    React.useEffect(() => {
-        if (forecastData.loaded) return;
-
-        axios.get('https://api.open-meteo.com/v1/forecast?latitude=38.9907&longitude=-77.0261&hourly=temperature_2m,weather_code&temperature_unit=fahrenheit&timezone=America%2FNew_York&forecast_days=3').then( (response) => {
-            const currentHour = new Date().getHours() + 1;
-            const indices = [currentHour, currentHour + 2, currentHour + 4, currentHour + 6, currentHour + 8];
-            const fd = indices.map( (index) => ({
-                time: new Date(response.data.hourly.time[index]).toLocaleTimeString('en-US', {hour: 'numeric', hour12: true}),
-                iconUrl: weatherTypeDescriptions[String(response.data.hourly.weather_code[index])].day.image,
-                temp: Math.round(response.data.hourly.temperature_2m[index])
-            }));
-            console.log(fd);
-            setForecastData({ loaded: true, data: fd });
-        });
-    }, []);
-
-    return (
-        <div className="hourly-forecast">
-            <h3>Forecast</h3>
-            <div className="hourly-grid">
-                {forecastData.data.map((hour, index) => (
-                <div className="hour" key={index}>
-                    <p>{hour.time}</p>
-                    <p><img src={hour.iconUrl} alt="ICON"></img></p>
-                    <p>{hour.temp}°F</p>
-                </div>
-                ))}
-            </div>
-        </div>
-    );
-}
-
-export default HourlyForecast;
