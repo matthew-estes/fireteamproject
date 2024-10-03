@@ -4,7 +4,7 @@ const axios = require("axios")
 require('dotenv').config();
 
 router.get("/lat-lng", (req, res) => {
-    const {lat, lng} = req.body;
+    const {lat, lng} = req.query;
     axios
     .get(`https://api.openweathermap.org/data/2.5/weather`,{params:
         {
@@ -23,7 +23,7 @@ router.get("/lat-lng", (req, res) => {
 });
 
 router.get("/geo-loc", (req, res) => {
-    const { city, state, country, limit } = req.body; 
+    const { city, state, country, limit } = req.query; 
     let query = city ? city : '';  
     if (state) {
         query += `,${state}`;
