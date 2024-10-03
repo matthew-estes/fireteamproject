@@ -6,6 +6,7 @@ const express = require('express');
 const app = express();
 const session = require('express-session');
 const passport = require('./config/passport-config');
+const cors = require('cors')
 let livereload = undefined;
 let connectLivereload = undefined;
 if (process.env.ON_HEROKU === 'false') {
@@ -30,6 +31,7 @@ app.use(
     saveUninitialized: true,
   })
 );
+app.use(cors());
 
 // initial passport
 app.use(passport.initialize());
