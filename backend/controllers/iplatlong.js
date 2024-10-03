@@ -18,9 +18,14 @@ router.get("/", (req, res) => {
             });
         });
     } else {
-        console.log(`Got public IP ${req.ip}, trying to get location`);
-        console.log(req.ips);
-        axios.get(`https://api.ipgeolocation.io/ipgeo?apiKey=${process.env.IPGEOLOCATION_IO_API_KEY}&ip=${req.ip}`).then( (result) => {
+        console.log(`Got IP ${req.ip}, checking if public...`);
+        let ipAddr = req.ip;
+        if (ipAddr.slice(0, 10) === "::ffff:10.") {
+            console.log("looks private, but maybe it's a proxy and we can get the real IP");
+            ipAddr = req.headers["x-forwarded-for"];
+            console.log(`Got forwarded IP ${ipAddr}`);
+        }
+        axios.get(`https://api.ipgeolocation.io/ipgeo?apiKey=${process.env.IPGEOLOCATION_IO_API_KEY}&ip=${ipAddr}`).then( (result) => {
             console.log(`Got location: ${result.data.latitude}, ${result.data.longitude}`);
             res.json({
                 lat: Number(result.data.latitude),
