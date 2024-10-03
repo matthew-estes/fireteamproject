@@ -22,4 +22,29 @@ router.get("/lat-lng", (req, res) => {
     });;
 });
 
+router.get("/geo-loc", (req, res) => {
+    const { city, state, country, limit } = req.body; 
+    let query = city ? city : '';  
+    if (state) {
+        query += `,${state}`;
+    }
+    if (country) {
+        query += `,${country}`;
+    }
+    axios.get('http://api.openweathermap.org/geo/1.0/direct', {
+        params: {
+            q: query,  
+            limit: limit || 5, 
+            appid: process.env.WEATHER_API_KEY  
+        }
+    })
+    .then((response) => {
+        res.json(response.data);  
+    })
+    .catch((error) => {
+        console.error('Error fetching location data:', error);
+        res.status(500).json({ error: 'Failed to fetch location data' });  
+    });
+});
+
 module.exports = router;
