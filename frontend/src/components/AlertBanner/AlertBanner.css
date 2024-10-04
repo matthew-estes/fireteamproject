@@ -1,0 +1,18 @@
+.alert-banner {
+  position: relative;
+  width: 430px;
+  top: 0; /* Start hidden above the screen */
+  left: 50;
+  right: 0;
+  background-color: red;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  font-size: 18px;
+  transition: top 0.5s ease-in-out; /* Animation to slide down */
+  z-index: -1;
+}
+
+.alert-banner.visible {
+  z-index: 1; /* When visible, it slides down into view */
+}

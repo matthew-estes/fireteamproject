@@ -41,4 +41,25 @@ router.get('/place', (req, res) => {
     });
 });
 
+router.get('/fire-alerts', (req, res) => {
+  try {
+    const fireData = {
+      lat: 40.47943,
+      lng: -74.32321,
+      detectedAt: '2024-10-04T07:39:00.000Z',
+      confidence: 'nominal',
+      frp: 0.45,
+      fwi: 5.272500038146973,
+      fireType: 'detected',
+      fireCategory: 'N',
+    };
+    res.json(fireData);
+  } catch (error) {
+    console.error('Error fetching fire data:', error);
+    res.write(
+      `data: ${JSON.stringify({ error: 'Error fetching fire data' })}\n\n`
+    );
+  }
+});
+
 module.exports = router;
