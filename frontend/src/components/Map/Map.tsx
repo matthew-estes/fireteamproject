@@ -4,7 +4,6 @@ import L, { DivIcon } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import axios from "axios";
 
-
 const DefaultIcon = new L.DivIcon({
   html: "👥",
   className: "person-emoji-icon",
@@ -20,8 +19,7 @@ const fireEmojiIcon = new L.DivIcon({
   popupAnchor: [0, -32],
 });
 
-
-const personEmojiStyle = document.createElement('style');
+const personEmojiStyle = document.createElement("style");
 personEmojiStyle.innerHTML = `
   .person-emoji-icon {
     font-size: 32px;
@@ -29,8 +27,8 @@ personEmojiStyle.innerHTML = `
     line-height: 32px;
   }
 `;
-// Define styles for the fire emoji marker (optional)
-const fireEmojiStyle = document.createElement('style');
+
+const fireEmojiStyle = document.createElement("style");
 fireEmojiStyle.innerHTML = `
   .fire-emoji-icon {
     font-size: 32px;
@@ -88,12 +86,24 @@ const Map: React.FC<MapProps> = ({ zoom = 13, latitude, longitude, fireData }) =
                 <Marker key={index} position={[fire.lat, fire.lng]} icon={fireEmojiIcon}>
                   <Popup>
                     <div>
-                      <p><strong>Fire Detected:</strong> {fire.detectedAt}</p>
-                      <p><strong>Confidence:</strong> {fire.confidence}</p>
-                      <p><strong>FRP:</strong> {fire.frp}</p>
-                      <p><strong>FWI:</strong> {fire.fwi}</p>
-                      <p><strong>Type:</strong> {fire.fireType}</p>
-                      <p><strong>Category:</strong> {fire.fireCategory}</p>
+                      <p>
+                        <strong>Fire Detected:</strong> {fire.detectedAt}
+                      </p>
+                      <p>
+                        <strong>Confidence:</strong> {fire.confidence}
+                      </p>
+                      <p>
+                        <strong>FRP:</strong> {fire.frp}
+                      </p>
+                      <p>
+                        <strong>FWI:</strong> {fire.fwi}
+                      </p>
+                      <p>
+                        <strong>Type:</strong> {fire.fireType}
+                      </p>
+                      <p>
+                        <strong>Category:</strong> {fire.fireCategory}
+                      </p>
                     </div>
                   </Popup>
                 </Marker>

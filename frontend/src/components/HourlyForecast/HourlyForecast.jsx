@@ -286,82 +286,73 @@ const weatherTypeDescriptions = {
 };
 
 function HourlyForecast({ latitude, longitude }) {
-  const [forecastData, setForecastData] = useState({
-    loaded: false,
-    data: [],
-  });
-
-  const fetchForecast = async () => {
-    try {
-      const q = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,weather_code&temperature_unit=fahrenheit&forecast_days=3`;
-      const response = await axios.get(q);
-
-      const hourlyData = response.data.hourly;
-      const currentHourIndex = new Date().getUTCHours();
-      const forecastIndices = [
-        currentHourIndex,
-        currentHourIndex + 2,
-        currentHourIndex + 4,
-        currentHourIndex + 6,
-        currentHourIndex + 8,
-      ];
-
-      const forecast = forecastIndices.map((index) => {
-        const time = new Date(hourlyData.time[index]).toLocaleTimeString("en-US", {
-          hour: "numeric",
-          hour12: true,
-        });
-
-        const weatherCode = hourlyData.weather_code[index].toString();
-        const weatherIcon = weatherTypeDescriptions[weatherCode]?.day?.image || "";
-
-        return {
-          time: time,
-          iconUrl: weatherIcon,
-          temp: Math.round(hourlyData.temperature_2m[index]),
-        };
-      });
-
-      setForecastData({ loaded: true, data: forecast });
-    } catch (error) {
-      console.error("Error fetching weather data:", error);
-    }
-  };
-
-  useEffect(() => {
-    if (!forecastData.loaded && latitude !== null && longitude !== null) {
-      fetchForecast();
-    }
-  }, [latitude, longitude]);
-
-  return (
-    <div className="hourly-forecast">
-      <h3>Forecast</h3>
-      <div className="hourly-grid">
-        {forecastData.loaded ? (
-          forecastData.data.map((hour, index) => (
-            <div className="hour" key={index}>
-              <p>{hour.time}</p>
-              <p>
-                {hour.iconUrl ? (
-                  <img
-                    src={hour.iconUrl}
-                    alt="Weather Icon"
-                    style={{ height: "auto", width: "100%", objectFit: "contain" }}
-                  />
-                ) : (
-                  <span>No Icon</span>
-                )}
-              </p>
-              <p>{hour.temp}°F</p>
-            </div>
-          ))
-        ) : (
-          <p>Loading forecast data...</p>
-        )}
-      </div>
-    </div>
-  );
-}
-
-export default HourlyForecast;
+	const [forecastData, setForecastData] = useState({
+	  loaded: false,
+	  data: [],
+	});
+  
+	const fetchForecast = async () => {
+	  try {
+		const q = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,weather_code&timezone=auto&temperature_unit=fahrenheit&forecast_days=3`;
+		const response = await axios.get(q);
+  
+		const hourlyData = response.data.hourly;
+		const timezoneOffsetInHours = longitude / 15;
+  
+		const forecastIndices = [0, 2, 4, 6, 8];
+  
+		const forecast = forecastIndices.map((index) => {
+		  const time = new Date(hourlyData.time[index] + "Z");
+  
+		  const localTime = new Date(time.getTime() + timezoneOffsetInHours * 3600 * 1000);
+  
+		  const timeFormatted = localTime.toLocaleTimeString("en-US", {
+			hour: "numeric",
+			hour12: true,
+		  });
+  
+		  const weatherCode = hourlyData.weather_code[index].toString();
+		  const weatherIcon = weatherTypeDescriptions[weatherCode]?.day?.image || "";
+  
+		  return {
+			time: timeFormatted,
+			iconUrl: weatherIcon,
+			temp: Math.round(hourlyData.temperature_2m[index]),
+		  };
+		});
+  
+		setForecastData({ loaded: true, data: forecast });
+	  } catch (error) {
+		console.error("Error fetching weather data:", error);
+	  }
+	};
+  
+	useEffect(() => {
+	  if (!forecastData.loaded && latitude !== null && longitude !== null) {
+		fetchForecast();
+	  }
+	}, [latitude, longitude]);
+  
+	return (
+		<div className="hourly-forecast">
+		  <h3>Forecast</h3>
+		  <div className="hourly-grid">
+			{forecastData.data.map((hour, index) => (
+			  <div className="hour" key={index}>
+				<p>{hour.time}</p>
+				<p>
+				  <img
+					src={hour.iconUrl}
+					alt="ICON"
+					style={{ height: "auto", width: "100%", objectFit: "contain" }}
+				  />
+				</p>
+				<p>{hour.temp}°F</p>
+			  </div>
+			))}
+		  </div>
+		</div>
+	  );
+  }
+  
+  export default HourlyForecast;

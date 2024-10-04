@@ -8,7 +8,7 @@ function NavigationDrawer({ isOpen, toggleDrawer, locations, onLocationSelect })
 
   const handleLocationClick = (location) => {
     onLocationSelect(location); 
-    const locationUrl = `/location/${location.name.replace(/\s+/g, "").toLowerCase()}`;
+    const locationUrl = location.name === 'My Location' ? '/' : `/location/${location.name.replace(/\s+/g, "").toLowerCase()}`;
     navigate(locationUrl); 
     toggleDrawer();
   };
@@ -28,7 +28,7 @@ function NavigationDrawer({ isOpen, toggleDrawer, locations, onLocationSelect })
           </Typography>
           {locations.map((location, index) => (
             <ListItem
-              button
+              button={true}  
               key={index}
               onClick={() => handleLocationClick(location)} 
             >

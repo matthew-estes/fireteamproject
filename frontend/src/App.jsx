@@ -15,7 +15,7 @@ import "leaflet/dist/leaflet.css";
 
 const predefinedLocations = [
   {
-    name: "Mom's House",
+    name: "Mom",
     city: "San Francisco",
     region: "California",
     country: "US",
@@ -31,7 +31,7 @@ const predefinedLocations = [
     longitude: -119.9772,
   },
   {
-    name: "Summer Camp",
+    name: "Dorm",
     city: "Denver",
     region: "Colorado",
     country: "US",
@@ -39,7 +39,7 @@ const predefinedLocations = [
     longitude: -104.9903,
   },
   {
-    name: "Grandma's Place",
+    name: "Grandma",
     city: "London",
     region: "England",
     country: "UK",
@@ -52,25 +52,29 @@ function App() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [locationData, setLocationData] = useState({ latitude: null, longitude: null });
   const [fireData, setFireData] = useState([]);
-  const [selectedLocation, setSelectedLocation] = useState("My Location"); // Track selected location
+  const [selectedLocation, setSelectedLocation] = useState("My Location");
 
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
   };
 
   const handleLocationSelect = (location) => {
-    setSelectedLocation(location.name);
-    setLocationData({
-      latitude: location.latitude,
-      longitude: location.longitude,
-    });
+    if (location.name === "My Location") {
+      setLocationData({ latitude: null, longitude: null });
+    } else {
+      setSelectedLocation(location.name);
+      setLocationData({
+        latitude: location.latitude,
+        longitude: location.longitude,
+      });
+    }
   };
 
   useEffect(() => {
     if (locationData.latitude && locationData.longitude) {
       const fetchFireData = async () => {
         try {
-          const response = await axios.get("http://localhost:3000/fire/lat-lng", {
+          const response = await axios.get("/api/fire/lat-lng", {
             params: {
               lat: locationData.latitude,
               lng: locationData.longitude,
@@ -107,6 +111,11 @@ function App() {
     );
   };
 
+  const allLocations = [
+    { name: "My Location", latitude: locationData.latitude, longitude: locationData.longitude },
+    ...predefinedLocations,
+  ];
+
   return (
     <div className="mobile-view">
       <StatusBar />
@@ -115,7 +124,7 @@ function App() {
       <NavigationDrawer
         isOpen={isDrawerOpen}
         toggleDrawer={toggleDrawer}
-        locations={predefinedLocations}
+        locations={allLocations}
         onLocationSelect={handleLocationSelect}
       />
 
