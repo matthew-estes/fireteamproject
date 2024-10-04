@@ -6,7 +6,7 @@ const express = require('express');
 const app = express();
 const session = require('express-session');
 const passport = require('./config/passport-config');
-const cors = require('cors')
+const cors = require('cors');
 let livereload = undefined;
 let connectLivereload = undefined;
 if (process.env.ON_HEROKU === 'false') {
@@ -68,8 +68,8 @@ app.use((req, res, next) => {
 app.use('/api/auth', require('./controllers/auth'));
 app.use('/api/test', testController);
 app.use('/api/iplatlong', iplatlongController);
-app.use('/api/fire', require('./controllers/fire'))
-app.use('/api/weather', require('./controllers/weather') )
+app.use('/api/fire', require('./controllers/fire'));
+app.use('/api/weather', require('./controllers/weather'));
 
 // Non-REST routes
 
