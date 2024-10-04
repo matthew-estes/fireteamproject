@@ -32,7 +32,7 @@ function App() {
         <Temperature latitude={locationData.latitude} longitude={locationData.longitude} />
       </div>
 
-      <HourlyForecast />
+      <HourlyForecast latitude={locationData.latitude} longitude={locationData.longitude} />
 
       <Map />
 

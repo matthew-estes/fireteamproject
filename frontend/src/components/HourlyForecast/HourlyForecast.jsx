@@ -286,7 +286,7 @@ const weatherTypeDescriptions = {
 	}
 };
 
-function HourlyForecast() {
+function HourlyForecast({ latitude, longitude }) {
     const [forecastData, setForecastData] = React.useState({
         loaded: false,
         data: [
@@ -299,20 +299,20 @@ function HourlyForecast() {
     });
 
     React.useEffect(() => {
-        if (forecastData.loaded) return;
-
-        axios.get('https://api.open-meteo.com/v1/forecast?latitude=38.9907&longitude=-77.0261&hourly=temperature_2m,weather_code&temperature_unit=fahrenheit&timezone=America%2FNew_York&forecast_days=3').then( (response) => {
-            const currentHour = new Date().getHours() + 1;
-            const indices = [currentHour, currentHour + 2, currentHour + 4, currentHour + 6, currentHour + 8];
-            const fd = indices.map( (index) => ({
-                time: new Date(response.data.hourly.time[index]).toLocaleTimeString('en-US', {hour: 'numeric', hour12: true}),
-                iconUrl: weatherTypeDescriptions[String(response.data.hourly.weather_code[index])].day.image,
-                temp: Math.round(response.data.hourly.temperature_2m[index])
-            }));
-            console.log(fd);
-            setForecastData({ loaded: true, data: fd });
-        });
-    }, []);
+        if (!forecastData.loaded && latitude !== null && longitude !== null) {
+            const q = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,weather_code&temperature_unit=fahrenheit&forecast_days=3`;
+            axios.get(q).then( (response) => {
+                const currentHour = new Date().getHours() + 1;
+                const indices = [currentHour, currentHour + 2, currentHour + 4, currentHour + 6, currentHour + 8];
+                const fd = indices.map( (index) => ({
+                    time: new Date(response.data.hourly.time[index]).toLocaleTimeString('en-US', {hour: 'numeric', hour12: true}),
+                    iconUrl: weatherTypeDescriptions[String(response.data.hourly.weather_code[index])].day.image,
+                    temp: Math.round(response.data.hourly.temperature_2m[index])
+                }));
+                setForecastData({ loaded: true, data: fd });
+            });
+        }
+    }, [latitude, longitude]);
 
     return (
         <div className="hourly-forecast">
@@ -321,7 +321,7 @@ function HourlyForecast() {
                 {forecastData.data.map((hour, index) => (
                 <div className="hour" key={index}>
                     <p>{hour.time}</p>
-                    <p><img src={hour.iconUrl} alt="ICON"></img></p>
+                    <p><img src={hour.iconUrl} alt="ICON" style={{ height: "auto", width: "100%", objectFit: "contain" }}></img></p>
                     <p>{hour.temp}°F</p>
                 </div>
                 ))}
