@@ -4,7 +4,7 @@ const axios = require('axios');
 require('dotenv').config();
 
 router.get('/lat-lng', (req, res) => {
-  const { lat, lng } = req.body;
+  const { lat, lng } = req.query;
   axios
     .get('https://api.ambeedata.com/fire/latest/by-lat-lng', {
       params: { lat: lat, lng: lng },
