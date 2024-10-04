@@ -18,7 +18,7 @@ function TopAppBar({ toggleDrawer }) {
           <MenuIcon />
         </IconButton>
         <Typography variant="h6" sx={{flexGrow: 1, fontFamily: "Merriweather, serif"}}>
-          EmberWatch
+          The Weather Section
         </Typography>
       </Toolbar>
     </AppBar>
