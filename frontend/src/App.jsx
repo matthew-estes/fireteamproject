@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useParams } from 'react-router-dom';
 import LocationInfo from './components/LocationInfo/LocationInfo';
 import Temperature from './components/Temperature/Temperature';
 import HourlyForecast from './components/HourlyForecast/HourlyForecast';
@@ -8,11 +8,46 @@ import NavigationDrawer from './components/NavigationDrawer/NavigationDrawer';
 import SignIn from './components/Account/SignIn';
 import SignUp from './components/Account/SignUp';
 import StatusBar from './components/StatusBar/StatusBar';
-import './App.css';
-import 'leaflet/dist/leaflet.css';
 import Map from './components/Map/Map';
 import axios from 'axios';
 import AlertBanner from './components/AlertBanner/AlertBanner';
+import './App.css';
+import 'leaflet/dist/leaflet.css';
+
+const predefinedLocations = [
+  {
+    name: "Mom",
+    city: "San Francisco",
+    region: "California",
+    country: "US",
+    latitude: 37.7749,
+    longitude: -122.4194,
+  },
+  {
+    name: "Lake House",
+    city: "South Lake Tahoe",
+    region: "California",
+    country: "US",
+    latitude: 38.9399,
+    longitude: -119.9772,
+  },
+  {
+    name: "Dorm",
+    city: "Denver",
+    region: "Colorado",
+    country: "US",
+    latitude: 39.7392,
+    longitude: -104.9903,
+  },
+  {
+    name: "Grandma",
+    city: "London",
+    region: "England",
+    country: "UK",
+    latitude: 51.5074,
+    longitude: -0.1278,
+  },
+];
 
 function App() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -21,11 +56,26 @@ function App() {
     longitude: null,
   });
   const [fireData, setFireData] = useState([]);
-  const [alertMessage, setAlertMessage] = useState('');
-  const [alertVisible, setAlertVisible] = useState(false);
+  const [alertMessage, setAlertMessage] = useState(''); 
+  const [alertVisible, setAlertVisible] = useState(false); 
+  const [selectedLocation, setSelectedLocation] = useState("My Location"); 
+
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
   };
+
+  const handleLocationSelect = (location) => {
+    if (location.name === "My Location") {
+      setLocationData({ latitude: null, longitude: null });
+    } else {
+      setSelectedLocation(location.name);
+      setLocationData({
+        latitude: location.latitude,
+        longitude: location.longitude,
+      });
+    }
+  };
+
   useEffect(() => {
     if (locationData.latitude && locationData.longitude) {
       const fetchFireData = async () => {
@@ -43,6 +93,8 @@ function App() {
       };
       fetchFireData();
     }
+
+
     const fetchFireAlert = async () => {
       try {
         const response = await axios.get('/fire-alerts');
@@ -51,7 +103,7 @@ function App() {
           setAlertMessage('🚨 New fire detected in your area!');
           setAlertVisible(true);
 
-          // Hide the alert after 5 seconds
+
           setTimeout(() => {
             setAlertVisible(false);
           }, 5000);
@@ -60,40 +112,74 @@ function App() {
         console.error('Error fetching fire alerts:', error);
       }
     };
+
     const intervalId = setInterval(() => {
       fetchFireAlert();
-    }, 10000); // Fetch every 5 seconds
+    }, 10000); 
 
     return () => clearInterval(intervalId);
   }, [locationData]);
 
+  const LocationPage = () => {
+    const { locationName } = useParams();
+    const location = predefinedLocations.find((loc) => loc.name.replace(/\s+/g, "").toLowerCase() === locationName);
+
+    if (!location) {
+      return <div>Location not found</div>;
+    }
+
+    return (
+      <div className="location-info">
+        <h1>{location.name}</h1>
+        <p>
+          {location.city}, {location.region}, {location.country}
+        </p>
+        <Temperature latitude={location.latitude} longitude={location.longitude} />
+        <HourlyForecast latitude={location.latitude} longitude={location.longitude} />
+        <Map latitude={location.latitude} longitude={location.longitude} fireData={fireData} />
+      </div>
+    );
+  };
+
+  const allLocations = [
+    { name: "My Location", latitude: locationData.latitude, longitude: locationData.longitude },
+    ...predefinedLocations,
+  ];
+
   return (
-    <div className='mobile-view'>
+    <div className="mobile-view">
       <StatusBar />
       <TopAppBar toggleDrawer={toggleDrawer} />
-      <NavigationDrawer isOpen={isDrawerOpen} toggleDrawer={toggleDrawer} />
 
-      <div className='weather-card'>
-        <AlertBanner message={alertMessage} visible={alertVisible} />
-        <LocationInfo setLocationData={setLocationData} />
-        <Temperature
-          latitude={locationData.latitude}
-          longitude={locationData.longitude}
-        />
-      </div>
-      <HourlyForecast
-        latitude={locationData.latitude}
-        longitude={locationData.longitude}
+      <NavigationDrawer
+        isOpen={isDrawerOpen}
+        toggleDrawer={toggleDrawer}
+        locations={allLocations}
+        onLocationSelect={handleLocationSelect}
       />
-      {/* Pass fireData and locationData to Map */}
-      <Map
-        latitude={locationData.latitude}
-        longitude={locationData.longitude}
-        fireData={fireData}
-      />
+
+      <AlertBanner message={alertMessage} visible={alertVisible} />
+
       <Routes>
-        <Route path='/signup' element={<SignUp />} />
-        <Route path='/signin' element={<SignIn />} />
+        <Route
+          path="/"
+          element={
+            <>
+              <LocationInfo setLocationData={setLocationData} />
+
+              {locationData.latitude && locationData.longitude && (
+                <>
+                  <Temperature latitude={locationData.latitude} longitude={locationData.longitude} />
+                  <HourlyForecast latitude={locationData.latitude} longitude={locationData.longitude} />
+                  <Map latitude={locationData.latitude} longitude={locationData.longitude} fireData={fireData} />
+                </>
+              )}
+            </>
+          }
+        />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/location/:locationName" element={<LocationPage />} />
       </Routes>
     </div>
   );

@@ -1,9 +1,18 @@
 import React from 'react';
 import { Drawer, List, ListItem, IconButton, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; 
 
-function NavigationDrawer({ isOpen, toggleDrawer }) {
+function NavigationDrawer({ isOpen, toggleDrawer, locations, onLocationSelect }) {
+  const navigate = useNavigate(); 
+
+  const handleLocationClick = (location) => {
+    onLocationSelect(location); 
+    const locationUrl = location.name === 'My Location' ? '/' : `/location/${location.name.replace(/\s+/g, "").toLowerCase()}`;
+    navigate(locationUrl); 
+    toggleDrawer();
+  };
+
   return (
     <Drawer anchor="left" open={isOpen} onClose={toggleDrawer}>
       <div style={{ width: '250px' }}>
@@ -14,12 +23,18 @@ function NavigationDrawer({ isOpen, toggleDrawer }) {
           Settings
         </Typography>
         <List>
-          <ListItem>
-            <Link to="/signin">Sign In</Link>
-          </ListItem>
-          <ListItem>
-            <Link to="/signup">Sign Up</Link>
-          </ListItem>
+          <Typography variant="h6" style={{ paddingLeft: '16px', marginTop: '20px' }}>
+            Locations
+          </Typography>
+          {locations.map((location, index) => (
+            <ListItem
+              button={true}  
+              key={index}
+              onClick={() => handleLocationClick(location)} 
+            >
+              {location.name}
+            </ListItem>
+          ))}
         </List>
       </div>
     </Drawer>
