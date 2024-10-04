@@ -102,7 +102,7 @@ const Map: React.FC<MapProps> = ({ zoom = 13, latitude, longitude, fireData }) =
             <Popup>Your approximate location based on your IP.</Popup>
           </Marker>
 
-          {fireData.data.length > 0 ? fireData.data.map((fire, index) => (
+          {(fireData.data && fireData.data.length > 0) ? fireData.data.map((fire, index) => (
             <Marker
               key={index}
               position={[fire.lat, fire.lng]}

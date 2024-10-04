@@ -1,3 +1,4 @@
+
 .status-bar {
     display: flex;
     justify-content: space-between;
@@ -5,15 +6,16 @@
     padding: 8px;
     background-color: #fff;
     color: #000;
-    font-family: "SF Pro", sans-serif;
     font-size: 17px;
     font-weight: 500;
   }
   
   .time {
     font-size: 17px;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', 'Helvetica Neue', Arial, sans-serif;
     font-weight: 590;
     text-align: center;
-    margin-left: 30px;
+    margin-left: 40px;
+    margin-top: 20px;
   }
   
