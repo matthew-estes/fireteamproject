@@ -14,7 +14,6 @@ router.get("/lat-lng", (req, res) => {
         }
     } )
     .then((response) => {
-      console.log(response.data);
       res.json(response.data)
     }).catch((error) => {
         console.error('Error fetching weather data:', error);

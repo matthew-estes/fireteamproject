@@ -11,7 +11,7 @@ function Temperature({ latitude, longitude }) {
     const fetchTemperature = async () => {
       if (latitude && longitude) {
         try {
-          const response = await axios.get(`http://localhost:3000/weather/lat-lng`, {
+          const response = await axios.get(`/api/weather/lat-lng`, {
             params: { lat: latitude, lng: longitude },
           });
           setTemperatureData(response.data);
