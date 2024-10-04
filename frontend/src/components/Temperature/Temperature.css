@@ -1,4 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400&display=swap");
+
 .temperature {
+  font-family: "Libre Franklin", sans-serif;
   font-size: 57px;
   font-weight: 400;
   color: #000;
@@ -8,6 +12,7 @@
 }
 
 .temp-range {
+  font-family: "Libre Franklin", sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 24px;
@@ -16,5 +21,8 @@
   text-align: center;
   padding: 8px 0px;
   margin-top: 10px;
-  
+}
+
+.high-temp {
+  margin-left: 20px;
 }

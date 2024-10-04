@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400&display=swap');
+
 .location-info {
     text-align: center;
     margin-top: 80px;
@@ -5,6 +8,7 @@
   
   .location-info h1 {
     color: #000;
+    font-family: 'Libre Franklin', sans-serif;
     font-size: 24px;
     font-weight: 400;
     line-height: 32px;
@@ -12,6 +16,7 @@
   
   .location-info p {
     color: #484646;
+    font-family: 'Merriweather', sans-serif;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;

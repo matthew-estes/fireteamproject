@@ -49,8 +49,12 @@ function Temperature({ latitude, longitude }) {
     <div>
       <div className="temperature">{tempInFahrenheit}°F</div>
       <div className="temp-range">
-        Low: <strong>{(((temperatureData.main.temp_min - 273.15) * 9) / 5 + 32).toFixed(0)}°F</strong> | High:{" "}
-        <strong>{(((temperatureData.main.temp_max - 273.15) * 9) / 5 + 32).toFixed(0)}°F</strong>
+        <span>
+          Low: <strong>{(((temperatureData.main.temp_min - 273.15) * 9) / 5 + 32).toFixed(0)}°F</strong>
+        </span>
+        <span className="high-temp">
+          High: <strong>{(((temperatureData.main.temp_max - 273.15) * 9) / 5 + 32).toFixed(0)}°F</strong>
+        </span>
       </div>
     </div>
   );
