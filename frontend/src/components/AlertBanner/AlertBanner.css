@@ -1,18 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400&display=swap");
+
 .alert-banner {
-  position: relative;
+  position: fixed;
   width: 430px;
-  top: 0; /* Start hidden above the screen */
-  left: 50;
-  right: 0;
+  height: 48px;
+  top: 110px; 
+  left: 0;
   background-color: red;
   color: white;
   text-align: center;
-  padding: 15px;
-  font-size: 18px;
-  transition: top 0.5s ease-in-out; /* Animation to slide down */
-  z-index: -1;
+  padding: 1px;
+  font-family: "Libre Franklin", sans-serif; 
+  font-size: 14px;
+  font-weight: 500;
+  z-index: 10; 
+  transition: opacity 0.5s ease-in-out;
+  opacity: 0; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
 }
 
 .alert-banner.visible {
-  z-index: 1; /* When visible, it slides down into view */
+  opacity: 1;
 }

@@ -34,6 +34,7 @@ function NavigationDrawer({ isOpen, toggleDrawer, locations, onLocationSelect })
             >
               {location.name}
             </ListItem>
+            
           ))}
         </List>
       </div>
