@@ -1,33 +1,38 @@
-.hourly-forecast {
-    background-color: #ffffff;
-    width: 90%;
-    max-width: 375px;
-    padding: 16px;
-    margin: 0 auto;
-    margin-top: 60px;
-    
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400&display=swap");
 
-  }
-  
-  .hourly-forecast h3 {
-    font-size: 16px;
-    color: #484646;
-    font-weight: 400;
-    margin-bottom: 8px;
-    gap: 16px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1); 
-  }
-  
-  .hourly-grid {
-    display: flex;
-    justify-content: space-between;
-    padding: 0 8px;
-  }
-  
-  .hour {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 14px;
-    color: #000;
-  }
+.hourly-forecast {
+  background-color: #ffffff;
+  width: 375px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px;
+  margin: 60px auto 0;
+}
+
+.hourly-forecast h3 {
+  font-family: "Merriweather", sans-serif;
+  font-size: 16px;
+  color: #797676;
+  font-weight: 400;
+  gap: 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 10px;
+  margin-bottom: 8px;
+}
+
+.hourly-grid {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.hour {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 14px;
+  color: #797676;
+}
+
