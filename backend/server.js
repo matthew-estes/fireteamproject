@@ -65,11 +65,11 @@ app.use((req, res, next) => {
 
 // Mount controllers
 
-app.use('/auth', require('./controllers/auth'));
+app.use('/api/auth', require('./controllers/auth'));
 app.use('/api/test', testController);
 app.use('/api/iplatlong', iplatlongController);
-app.use('/fire', require('./controllers/fire'))
-app.use('/weather', require('./controllers/weather') )
+app.use('/api/fire', require('./controllers/fire'))
+app.use('/api/weather', require('./controllers/weather') )
 
 // Non-REST routes
 

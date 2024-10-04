@@ -27,7 +27,7 @@ function App() {
     if (locationData.latitude && locationData.longitude) {
       const fetchFireData = async () => {
         try {
-          const response = await axios.get("http://localhost:3000/fire/lat-lng", {
+          const response = await axios.get("/api/fire/lat-lng", {
             params: {
               lat: locationData.latitude,
               lng: locationData.longitude,

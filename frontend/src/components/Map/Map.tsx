@@ -6,7 +6,7 @@ import axios from "axios";
 
 
 const DefaultIcon = new L.DivIcon({
-  html: "👥",   // Fire emoji
+  html: "👥",
   className: "person-emoji-icon",
   iconSize: [25, 41],
   iconAnchor: [12, 41],

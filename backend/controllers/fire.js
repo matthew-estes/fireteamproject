@@ -17,8 +17,8 @@ router.get('/lat-lng', (req, res) => {
       res.json(response.data);
     })
     .catch((error) => {
-      console.error('Error fetching weather data:', error);
-      res.status(500).json({ error: 'Failed to fetch weather data' });
+      console.error('Error fetching fire/latest/by-lat-lng:', error);
+      res.status(500).json({ error: 'Failed to fetch fire data' });
     });
 });
 
@@ -36,8 +36,8 @@ router.get('/place', (req, res) => {
       res.json(response.data);
     })
     .catch((error) => {
-      console.error('Error fetching weather data:', error);
-      res.status(500).json({ error: 'Failed to fetch weather data' });
+      console.error('Error fetching fire/latest/by-place:', error);
+      res.status(500).json({ error: 'Failed to fetch fire data' });
     });
 });
 
