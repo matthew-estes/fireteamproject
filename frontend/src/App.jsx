@@ -99,7 +99,7 @@ function App() {
         const response = await axios.get('/fire-alerts');
         const fireData = response.data;
         if (fireData) {
-          setAlertMessage('🚨 Fire Alert in this Area!');
+          setAlertMessage('Fire Alert in this Area!');
           setAlertVisible(true);
 
 
