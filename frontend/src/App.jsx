@@ -7,7 +7,6 @@ import TopAppBar from './components/TopAppBar/TopAppBar';
 import NavigationDrawer from './components/NavigationDrawer/NavigationDrawer';
 import SignIn from './components/Account/SignIn';
 import SignUp from './components/Account/SignUp';
-import StatusBar from './components/StatusBar/StatusBar';
 import Map from './components/Map/Map';
 import axios from 'axios';
 import AlertBanner from './components/AlertBanner/AlertBanner';
@@ -148,7 +147,7 @@ function App() {
 
   return (
     <div className="mobile-view">
-      <StatusBar />
+    
       <TopAppBar toggleDrawer={toggleDrawer} />
 
       <NavigationDrawer
