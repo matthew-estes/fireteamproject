@@ -69,7 +69,7 @@ const Map: React.FC<MapProps> = ({ zoom = 13, latitude, longitude, fireData }) =
 
   return (
     <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
-      <div style={{ width: "95%", maxWidth: "420px", marginTop: "10px" }}>
+      <div style={{ width: "95%", maxWidth: "420px", marginTop: "20px" }}>
         <MapContainer center={center} zoom={zoom} style={{ height: "300px", width: "100%" }}>
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
