@@ -1,0 +1,38 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400&display=swap");
+
+.drawer-header {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+}
+
+.drawer-header .close-icon {
+  margin-right: auto;
+}
+
+.drawer-header .title {
+  font-size: 16px;
+  font-family: "Merriweather", sans-serif;
+  flex-grow: 1;
+  text-align: center;
+}
+
+.locations-title {
+  padding-left: 16px;
+  margin-top: 20px;
+  color: #797676;
+}
+
+.settings-title {
+  padding-left: 16px;
+  color: #797676;
+  margin-top: 90px;
+}
+
+.location-item {
+  font-family: "Libre Franklin", sans-serif;
+  font-size: 14px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
