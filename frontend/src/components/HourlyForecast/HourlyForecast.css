@@ -3,12 +3,12 @@
 
 .hourly-forecast {
   background-color: #ffffff;
-  width: 375px;
   flex-direction: column;
   align-items: flex-start;
   gap: 16px;
   padding: 16px;
-  margin: 60px auto 0;
+  margin: 20px 10px;
+  border-radius: 4px;
 }
 
 .hourly-forecast h3 {
