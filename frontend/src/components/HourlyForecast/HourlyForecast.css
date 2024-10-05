@@ -3,7 +3,6 @@
 
 .hourly-forecast {
   background-color: #ffffff;
-  width: 375px;
   flex-direction: column;
   align-items: flex-start;
   gap: 16px;
