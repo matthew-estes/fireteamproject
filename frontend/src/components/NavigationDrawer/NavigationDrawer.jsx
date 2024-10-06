@@ -34,7 +34,7 @@ function NavigationDrawer({ isOpen, toggleDrawer, locations, onLocationSelect })
           </Typography>
           {locations.map((location, index) => (
             <ListItem
-              button={true}
+              button 
               key={index}
               className="location-item"
               onClick={() => handleLocationClick(location)}
@@ -42,9 +42,9 @@ function NavigationDrawer({ isOpen, toggleDrawer, locations, onLocationSelect })
               {location.name}
             </ListItem>
           ))}
-          <ListItem button={true} className="location-item">
-            Add New Location          +
-          </ListItem> 
+          <ListItem button className="location-item">
+            Add New Location +
+          </ListItem>
           <Typography
             variant="h6"
             className="settings-title"
@@ -52,10 +52,10 @@ function NavigationDrawer({ isOpen, toggleDrawer, locations, onLocationSelect })
           >
             Settings
           </Typography>
-          <ListItem button={true} className="location-item">
+          <ListItem button className="location-item">
             Profile
           </ListItem>
-          <ListItem button={true} className="location-item">
+          <ListItem button className="location-item">
             Alerts
           </ListItem>
         </List>
