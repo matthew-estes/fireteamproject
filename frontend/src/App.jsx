@@ -91,7 +91,7 @@ function App() {
         console.error("Error fetching fire alerts:", error);
       }
     };
-  
+
     const fetchFireData = async () => {
       if (locationData.latitude && locationData.longitude) {
         try {
@@ -112,12 +112,13 @@ function App() {
         }
       }
     };
-  
+
     fetchFireData();
+
     const intervalId = setInterval(() => {
       fetchFireAlert();
     }, 10000);
-  
+
     return () => clearInterval(intervalId);
   }, [locationData]);
 
