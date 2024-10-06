@@ -4,8 +4,9 @@
   "version": "0.0.0",
   "scripts": {
     "backend": "nodemon backend/server.js -e css,ejs,js,json",
-    "frontend": "vite",
-    "start": "vite build && node backend/server.js"
+  "frontend": "vite",
+  "build": "vite build",
+  "start": "npm run build && node backend/server.js"
   },
   "dependencies": {
     "@emotion/react": "^11.13.3",
