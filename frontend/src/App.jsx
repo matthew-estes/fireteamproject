@@ -76,23 +76,6 @@ function App() {
   };
 
   useEffect(() => {
-    if (locationData.latitude && locationData.longitude) {
-      const fetchFireData = async () => {
-        try {
-          const response = await axios.get("/api/fire/lat-lng", {
-            params: {
-              lat: locationData.latitude,
-              lng: locationData.longitude,
-            },
-          });
-          setFireData(response.data);
-        } catch (error) {
-          console.error("Error fetching fire data:", error);
-        }
-      };
-      fetchFireData();
-    }
-
     const fetchFireAlert = async () => {
       try {
         const response = await axios.get("/fire-alerts");
@@ -100,7 +83,6 @@ function App() {
         if (fireData) {
           setAlertMessage("Fire Alert in this Area!");
           setAlertVisible(true);
-
           setTimeout(() => {
             setAlertVisible(false);
           }, 5000);
@@ -109,11 +91,33 @@ function App() {
         console.error("Error fetching fire alerts:", error);
       }
     };
-
+  
+    const fetchFireData = async () => {
+      if (locationData.latitude && locationData.longitude) {
+        try {
+          const response = await axios.get("/api/fire/lat-lng", {
+            params: {
+              lat: locationData.latitude,
+              lng: locationData.longitude,
+            },
+          });
+          console.log("Fire Data Response:", response.data); 
+          if (response.data && response.data.data) {
+            setFireData(response.data.data); 
+          } else {
+            setFireData([]);
+          }
+        } catch (error) {
+          console.error("Error fetching fire data:", error);
+        }
+      }
+    };
+  
+    fetchFireData();
     const intervalId = setInterval(() => {
       fetchFireAlert();
     }, 10000);
-
+  
     return () => clearInterval(intervalId);
   }, [locationData]);
 
